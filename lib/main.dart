@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import 'package:nlw_project/modules/home/home_page.dart';
+// import 'package:nlw_project/modules/home/home_page.dart';
 import 'package:nlw_project/modules/login/login_page.dart';
-import 'package:nlw_project/modules/splash/splash_page.dart';
+// import 'package:nlw_project/modules/splash/splash_page.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 
 void main() {
