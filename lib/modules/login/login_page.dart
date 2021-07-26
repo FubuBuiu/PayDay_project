@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nlw_project/modules/login/login_controller.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_images.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
@@ -12,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -86,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         const EdgeInsets.only(left: 40, right: 40, top: 40),
                     child: SocialLoginButton(
                       onTap: () {
-                        // print("dadsa");
+                        controller.googleSignIn(context);
                       },
                     ),
                   )
