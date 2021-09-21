@@ -1,10 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nlw_project/models/user_model.dart';
+import 'package:nlw_project/modules/extract/extract_page.dart';
 import 'package:nlw_project/modules/home/home_controller.dart';
+import 'package:nlw_project/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
+import 'package:nlw_project/widgets/bottom_sheet/bottom_sheet_widget.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final UserModel user;
+  const Home({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -12,14 +21,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final controller = HomeController();
-  final pages = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.blue,
-    )
-  ];
+  final List pages = [MeusBoletosPage(), ExtractPage()];
+  final GlobalKey stackKey = GlobalKey();
+  final bottomSheet = MyBottomSheet();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class _HomeState extends State<Home> {
                     style: TextStyles.titleRegular,
                     children: [
                       TextSpan(
-                          text: "usuário",
+                          text: "${widget.user.name}",
                           style: TextStyles.titleBoldBackground)
                     ]),
               ),
@@ -44,61 +49,88 @@ class _HomeState extends State<Home> {
                 "Mantenha suas contas em dia",
                 style: TextStyles.captionBoldShape,
               ),
-              trailing: Container(
-                height: 48,
-                width: 48,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10)),
+              trailing: InkWell(
+                child: Container(
+                  height: 48,
+                  width: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(widget.user.photoURL!),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  bottomSheet.menuProfile(context, widget.user);
+                },
               ),
             ),
           ),
         ),
       ),
-      body: pages[controller.currentPage],
-      bottomNavigationBar: Container(
-        height: 90,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              onPressed: () {
-                controller.setPage(0);
-                setState(() {});
-              },
-              icon: Icon(
-                Icons.home,
-                color: AppColors.primary,
+      body: Stack(
+        key: stackKey,
+        children: [
+          Container(
+            color: Colors.grey[200],
+            child: pages[controller.currentPage],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: AppColors.background,
+              height: 90,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      controller.setPage(0);
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.home,
+                      color: controller.currentPage == 0
+                          ? AppColors.primary
+                          : AppColors.body,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      bottomSheet.addBoletoOptions(context);
+                      // Navigator.pushNamed(context, "/barcode_scanner");
+                    },
+                    child: Container(
+                      width: 56,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Icon(
+                        Icons.add_box_outlined,
+                        color: AppColors.background,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      controller.setPage(1);
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.description_outlined,
+                      color: controller.currentPage == 1
+                          ? AppColors.primary
+                          : AppColors.body,
+                    ),
+                  ),
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/barcode_scanner");
-              },
-              child: Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Icon(
-                  Icons.add_box_outlined,
-                  color: AppColors.background,
-                ),
-              ),
-            ),
-            IconButton(
-                onPressed: () {
-                  controller.setPage(1);
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.description_outlined,
-                  color: AppColors.body,
-                )),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,10 +1,11 @@
 import "package:flutter/material.dart";
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nlw_project/models/user_model.dart';
 import 'package:nlw_project/modules/login/login_controller.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_images.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
 import 'package:nlw_project/widgets/social_login/social_login_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
