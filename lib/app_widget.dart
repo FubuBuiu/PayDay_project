@@ -17,6 +17,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Pay Flow",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           canvasColor: Colors.transparent,
           primaryColor: AppColors.primary,
