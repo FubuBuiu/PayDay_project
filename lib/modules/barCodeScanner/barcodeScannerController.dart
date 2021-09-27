@@ -1,7 +1,8 @@
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class BarcodeScanner {
-  Future<String?> readBarcode() async {
+  //----------------LENDO CÓDIGO DE BARRA----------------
+  Future readBarcode() async {
     //----------------FUNCIONA----------------
     String? code;
     await FlutterBarcodeScanner.scanBarcode(
@@ -10,4 +11,5 @@ class BarcodeScanner {
     return code;
     //----------------------------------------
   }
+  //-----------------------------------------------------
 }

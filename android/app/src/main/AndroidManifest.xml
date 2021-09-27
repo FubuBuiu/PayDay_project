@@ -2,6 +2,7 @@
   <!--PERMISSOES PARA O flutter_mobile_vision-->
   <uses-feature android:name="android.hardware.camera" />
   <uses-permission android:name="android.permission.CAMERA" />
+
   <!--PERMISSOES PARA O flutter_mobile_vision-->
   <application android:label="nlw_project" android:icon="@mipmap/ic_launcher">
     <activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">

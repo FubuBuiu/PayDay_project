@@ -1,6 +1,7 @@
 //@dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
+import 'package:nlw_project/modules/notifications/notifications.dart';
 import 'app_widget.dart';
 
 void main() {
@@ -14,6 +15,12 @@ class AppFirebase extends StatefulWidget {
 
 class _AppFirebaseState extends State<AppFirebase> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  void initState() {
+    super.initState();
+    MyNotification.init();
+  }
 
   @override
   Widget build(BuildContext context) {

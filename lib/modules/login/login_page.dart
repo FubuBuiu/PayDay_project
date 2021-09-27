@@ -40,8 +40,8 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.only(top: size.height * .05, bottom: 10),
+                      padding: EdgeInsets.only(
+                          top: (size.height * .36) * .2, bottom: 10),
                       child: Container(
                         height: 315,
                         child: Stack(
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 24),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Image.asset(AppImages.logomini),
                     ),
                     Text(
@@ -102,39 +102,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            // Positioned(
-            //   bottom: size.height * .05,
-            //   right: 0,
-            //   left: 0,
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     children: [
-            //       Image.asset(AppImages.logomini),
-            //       Padding(
-            //         padding: EdgeInsets.only(
-            //           left: 70,
-            //           right: 70,
-            //           top: 24,
-            //         ),
-            //         child: Text(
-            //           "Organize seus boletos em um só lugar",
-            //           style: TextStyles.titleHome,
-            //           textAlign: TextAlign.center,
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding:
-            //             const EdgeInsets.only(left: 40, right: 40, top: 40),
-            //         child: SocialLoginButton(
-            //           onTap: () async {
-            //             controller.googleSignIn(context);
-            //           },
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),

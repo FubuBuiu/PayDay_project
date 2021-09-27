@@ -2,9 +2,10 @@ import 'package:nlw_project/auth/auth.controller.dart';
 import 'package:nlw_project/data/db_firestore.dart';
 import 'package:nlw_project/models/boleto_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nlw_project/modules/notifications/notifications.dart';
 
 class BoletoController {
-  Future<void> addBoleto(boleto) async {
+  Future<void> addBoleto(BoletoModel boleto) async {
     FirebaseFirestore db = await DBFirestore.get();
     final authController = AuthControlller();
     final user = await authController.getUser();
@@ -21,6 +22,8 @@ class BoletoController {
         "vencimento": boleto.dueDate
       },
     );
+
+    MyNotification().createNotification(boleto);
   }
 
   Future<void> boletoPaid(BoletoModel boleto) async {
@@ -44,11 +47,11 @@ class BoletoController {
     // -------------------------------------------------------
 
     // -----------DELETANDO BOLETO DA COLEÇÃO bank_statement-----------
-    await deleteBoleto("bank_statement", boleto.barcode);
+    await deleteBoleto("bank_statement", boleto);
     //-----------------------------------------------------------------
   }
 
-  Future<void> deleteBoleto(String boletoType, idBoleto) async {
+  Future<void> deleteBoleto(String boletoType, BoletoModel boleto) async {
     final authController = AuthControlller();
     final user = await authController.getUser();
     FirebaseFirestore db = await DBFirestore.get();
@@ -59,10 +62,20 @@ class BoletoController {
               .collection("users")
               .doc(user.id)
               .collection(boletoType)
-              .doc(idBoleto),
+              .doc(boleto.barcode),
         );
       },
     );
+    if (boletoType == "bank_statement") {
+      MyNotification.cancel(MyNotification().idNotification(
+          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)), 8));
+      MyNotification.cancel(MyNotification().idNotification(
+          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)), 16));
+      MyNotification.cancel(MyNotification().idNotification(
+          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)) - 1, 8));
+      MyNotification.cancel(MyNotification().idNotification(
+          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)) - 1, 16));
+    }
   }
 
   Future getBoletos(local) async {

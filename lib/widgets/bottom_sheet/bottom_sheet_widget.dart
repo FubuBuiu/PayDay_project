@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nlw_project/auth/auth.controller.dart';
 import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/models/user_model.dart';
@@ -283,8 +282,7 @@ class MyBottomSheet {
                   width: double.infinity,
                   child: TextButton.icon(
                     onPressed: () {
-                      controllerBoleto.deleteBoleto(
-                          "bank_statement", boleto.barcode);
+                      controllerBoleto.deleteBoleto("bank_statement", boleto);
                       Navigator.pop(context);
                     },
                     style: ButtonStyle(
@@ -336,7 +334,7 @@ class MyBottomSheet {
             width: double.infinity,
             child: TextButton.icon(
               onPressed: () {
-                controllerBoleto.deleteBoleto("extract", boleto.barcode);
+                controllerBoleto.deleteBoleto("extract", boleto);
                 Navigator.pop(context);
               },
               style: ButtonStyle(

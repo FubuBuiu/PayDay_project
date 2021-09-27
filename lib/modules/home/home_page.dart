@@ -99,7 +99,6 @@ class _HomeState extends State<Home> {
                   GestureDetector(
                     onTap: () {
                       bottomSheet.addBoletoOptions(context);
-                      // Navigator.pushNamed(context, "/barcode_scanner");
                     },
                     child: Container(
                       width: 56,

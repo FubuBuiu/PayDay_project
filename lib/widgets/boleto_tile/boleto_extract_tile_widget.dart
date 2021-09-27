@@ -1,9 +1,7 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
 import 'package:nlw_project/widgets/bottom_sheet/bottom_sheet_widget.dart';

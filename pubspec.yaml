@@ -28,7 +28,6 @@ dependencies:
   google_fonts: ^2.1.0
   shared_preferences: ^2.0.6
   cupertino_icons: ^1.0.2
-  # google_ml_kit: ^0.6.0
   camera:
   image_picker: 0.8.0+4
   font_awesome_flutter: ^9.1.0
@@ -37,9 +36,8 @@ dependencies:
   cloud_firestore: ^2.5.2
   flutter_barcode_scanner: any
   toast: ^0.1.5
-  # fluttertoast: ^7.1.6  
-  # flutter_mobile_vision: ^0.1.4+1
-  # firebase_ml_vision: ^0.9.10
+  flutter_local_notifications: ^8.2.0
+  rxdart: ^0.27.2
 
 dev_dependencies:
   flutter_test:
