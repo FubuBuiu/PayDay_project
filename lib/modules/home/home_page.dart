@@ -51,8 +51,8 @@ class _HomeState extends State<Home> {
               ),
               trailing: InkWell(
                 child: Container(
-                  height: 48,
-                  width: 48,
+                  height: 54,
+                  width: 54,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),

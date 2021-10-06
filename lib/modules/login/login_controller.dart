@@ -32,7 +32,7 @@ class LoginController {
 
   Future<void> deleteAccount() async {
     await controllerBoleto.deleteAllBoletosUser();
-    await authController.deleteUser();
+    await authController.deleteSharedPreferencesUser();
     await logout();
   }
 }

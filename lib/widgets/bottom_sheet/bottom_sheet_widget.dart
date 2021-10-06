@@ -153,7 +153,7 @@ class MyBottomSheet {
                             ),
                           ),
                           onPressed: () async {
-                            await controllerAuth.deleteUser();
+                            await controllerAuth.deleteSharedPreferencesUser();
                             controllerLogin.logout();
                             Navigator.pushNamed(context, "/login");
                           },

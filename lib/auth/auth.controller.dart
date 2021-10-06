@@ -45,7 +45,7 @@ class AuthControlller {
     }
   }
 
-  Future<void> deleteUser() async {
+  Future<void> deleteSharedPreferencesUser() async {
     final instance = await SharedPreferences.getInstance();
     await instance.remove('user');
     await instance.clear();

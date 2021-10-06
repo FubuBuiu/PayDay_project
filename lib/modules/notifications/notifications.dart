@@ -95,9 +95,9 @@ class MyNotification {
         "${DateTime.now().year}${DateTime.now().month.toString().length == 1 ? '0${DateTime.now().month}' : DateTime.now().month}${DateTime.now().day.toString().length == 1 ? '0${DateTime.now().day}' : DateTime.now().day}");
 
     final String notificationInDueDate08 =
-        "${dueDate.year}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}T021600";
+        "${dueDate.year}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}T080000";
     final String notificationInDueDate16 =
-        "${dueDate.year}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}T021700";
+        "${dueDate.year}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}T160000";
     final String notificationOneDayEarlier08 =
         "${dueDate.year}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.day.toString().length == 1 ? '0${dueDate.day - 1}' : dueDate.day - 1}T080000";
     final String notificationOneDayEarlier16 =

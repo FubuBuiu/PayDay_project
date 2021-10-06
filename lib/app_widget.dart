@@ -21,7 +21,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
           canvasColor: Colors.transparent,
           primaryColor: AppColors.primary,
-          primarySwatch: Colors.orange),
+          primarySwatch: Colors.blue),
       initialRoute: "/splash",
       routes: {
         "/splash": (context) => SplashPage(),

@@ -53,25 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                                 alignment: Alignment.center,
                                 child: Image.asset(
                                   AppImages.person,
-                                  height: 310,
+                                  // height: 310,
                                 ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.white.withOpacity(0.0),
-                                      Colors.white,
-                                    ],
-                                    stops: [0, 0.8],
-                                  ),
-                                ),
-                                height: 310 * .28,
                               ),
                             ),
                           ],
