@@ -8,6 +8,8 @@ import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/modules/barcodeInformations/barcodeInformations.dart';
 import 'package:nlw_project/modules/boletoController/boletoController.dart';
 import 'package:nlw_project/modules/date/my_date.dart';
+import 'package:nlw_project/modules/home/home_page.dart';
+import 'package:nlw_project/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
 import 'package:nlw_project/widgets/set_label_buttons/set_label_buttons.dart';
@@ -114,8 +116,8 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
               name: nomeController.text,
               value: moneyInputTextController.numberValue,
             );
-            Navigator.pop(context);
             await controller.addBoleto(boleto);
+            Navigator.pop(context);
           }
         },
         enableSecondaryColor: true,

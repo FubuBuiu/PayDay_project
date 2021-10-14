@@ -29,42 +29,40 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(152),
+        preferredSize: Size.fromHeight(80),
         child: Container(
-          height: 152,
+          alignment: Alignment.bottomCenter,
           color: AppColors.primary,
-          child: Center(
-            child: ListTile(
-              title: Text.rich(
-                TextSpan(
-                    text: "Olá, ",
-                    style: TextStyles.titleRegular,
-                    children: [
-                      TextSpan(
-                          text: "${widget.user.name}",
-                          style: TextStyles.titleBoldBackground)
-                    ]),
-              ),
-              subtitle: Text(
-                "Mantenha suas contas em dia",
-                style: TextStyles.captionBoldShape,
-              ),
-              trailing: InkWell(
-                child: Container(
-                  height: 54,
-                  width: 54,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(widget.user.photoURL!),
-                    ),
+          child: ListTile(
+            title: Text.rich(
+              TextSpan(
+                  text: "Olá, ",
+                  style: TextStyles.titleRegular,
+                  children: [
+                    TextSpan(
+                        text: "${widget.user.name}",
+                        style: TextStyles.titleBoldBackground)
+                  ]),
+            ),
+            subtitle: Text(
+              "Mantenha suas contas em dia",
+              style: TextStyles.captionBoldShape,
+            ),
+            trailing: InkWell(
+              child: Container(
+                height: 54,
+                width: 54,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: NetworkImage(widget.user.photoURL!),
                   ),
                 ),
-                onTap: () {
-                  bottomSheet.menuProfile(context, widget.user);
-                },
               ),
+              onTap: () {
+                bottomSheet.menuProfile(context, widget.user);
+              },
             ),
           ),
         ),

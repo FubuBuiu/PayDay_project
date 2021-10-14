@@ -4,9 +4,7 @@ import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/modules/boletoController/boletoController.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
-import 'package:nlw_project/widgets/boleto_info/boleto_info_widget.dart';
 import 'package:nlw_project/widgets/boleto_list/boleto_extract_list_widget.dart';
-import 'package:nlw_project/widgets/boleto_list/boleto_list_widget.dart';
 
 class ExtractPage extends StatefulWidget {
   const ExtractPage({
@@ -42,7 +40,7 @@ class _ExtractPageState extends State<ExtractPage> {
             return SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
               child: Container(
-                height: MediaQuery.of(context).size.height - 152 - 90,
+                height: MediaQuery.of(context).size.height - 80 - 90,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

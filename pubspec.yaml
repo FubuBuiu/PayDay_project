@@ -38,6 +38,7 @@ dependencies:
   toast: ^0.1.5
   flutter_local_notifications: ^8.2.0
   rxdart: ^0.27.2
+  device_apps: ^2.1.1
 
 dev_dependencies:
   flutter_test:

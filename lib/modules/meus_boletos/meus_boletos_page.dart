@@ -4,6 +4,7 @@ import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/modules/boletoController/boletoController.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
+import 'package:nlw_project/widgets/banks_list/bank_list_widget.dart';
 import 'package:nlw_project/widgets/boleto_info/boleto_info_widget.dart';
 import 'package:nlw_project/widgets/boleto_list/boleto_list_widget.dart';
 
@@ -34,8 +35,8 @@ class _MeusBoletosPageState extends State<MeusBoletosPage> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: refresh,
-      backgroundColor: AppColors.primary,
-      color: AppColors.background,
+      backgroundColor: AppColors.background,
+      color: AppColors.primary,
       child: FutureBuilder(
         future: controller.getBoletos("bank_statement"),
         builder: (context, snapshot) {
@@ -44,21 +45,32 @@ class _MeusBoletosPageState extends State<MeusBoletosPage> {
             return SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
               child: Container(
-                height: MediaQuery.of(context).size.height - 152 - 90,
+                height: MediaQuery.of(context).size.height - 80 - 90,
                 child: Column(
                   children: [
-                    Stack(
-                      children: [
-                        Container(
-                          color: AppColors.primary,
-                          height: 40,
-                          width: double.maxFinite,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: BoletoInfoWidget(size: boletos.length),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 175,
+                      child: Stack(
+                        children: [
+                          Container(
+                            color: AppColors.primary,
+                            height: 140,
+                            width: double.maxFinite,
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: BankListWidget(),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 24),
+                              child: BoletoInfoWidget(size: boletos.length),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
