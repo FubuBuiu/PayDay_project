@@ -6,8 +6,10 @@ class MyDate {
       var year = date.substring(6);
       var today = DateTime.now();
 
-      return (int.parse(day) >= 1 || int.parse(day) <= 31) &&
-          (int.parse(month) >= 1 || int.parse(month) <= 12) &&
+      print(day+","+month+","+year);
+
+      return (int.parse(day) >= 1 && int.parse(day) <= 31) &&
+          (int.parse(month) >= 1 && int.parse(month) <= 12) &&
           (int.parse(year) >= today.year);
     }
     return false;
