@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:nlw_project/modules/splash/splash_page.dart';
+import 'package:nlw_project/themes/app_theme.dart';
+
 import 'models/user_model.dart';
 import 'modules/home/home_page.dart';
 import 'modules/insert_boleto/insert_boleto_page.dart';
 import 'modules/login/login_page.dart';
-import 'themes/app_colors.dart';
 
 class AppWidget extends StatelessWidget {
-  AppWidget() {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
-  }
+  final bool isDarkTheme;
+  AppWidget({
+    Key? key,
+    required this.isDarkTheme,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.system,
       title: "Pay Flow",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          canvasColor: Colors.transparent,
-          primaryColor: AppColors.primary,
-          primarySwatch: Colors.blue),
+      theme: AppTheme.myThemeData(isDarkTheme, context),
+      
       initialRoute: "/splash",
       routes: {
         "/splash": (context) => SplashPage(),

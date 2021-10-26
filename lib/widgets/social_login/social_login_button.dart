@@ -13,7 +13,7 @@ class SocialLoginButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.shape,
+          color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           borderRadius: BorderRadius.circular(5),
           border: Border.fromBorderSide(
             BorderSide(color: AppColors.stroke),

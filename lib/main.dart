@@ -1,7 +1,9 @@
 //@dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
+import 'package:nlw_project/modules/dark_theme/dark_theme_provider.dart';
 import 'package:nlw_project/modules/notifications/notifications.dart';
+import 'package:provider/provider.dart';
 import 'app_widget.dart';
 
 void main() {
@@ -15,11 +17,18 @@ class AppFirebase extends StatefulWidget {
 
 class _AppFirebaseState extends State<AppFirebase> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
 
   @override
   void initState() {
     super.initState();
     MyNotification.init();
+    getCurrentAppTheme();
+  }
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getTheme();
   }
 
   @override
@@ -41,7 +50,16 @@ class _AppFirebaseState extends State<AppFirebase> {
         }
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return AppWidget();
+          return ChangeNotifierProvider(
+            create: (_) {
+              return themeChangeProvider;
+            },
+            child: Consumer<DarkThemeProvider>(
+              builder: (BuildContext context, value, child) {
+                return AppWidget(isDarkTheme: themeChangeProvider.darkTheme);
+              },
+            ),
+          );
         }
         // Otherwise, show something whilst waiting for initialization to complete
         return Material(

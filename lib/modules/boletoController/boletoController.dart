@@ -23,7 +23,7 @@ class BoletoController {
       },
     );
 
-    MyNotification().createNotification(boleto);
+    MyNotification().createBillNotifications(boleto);
   }
 
   Future<void> boletoPaid(BoletoModel boleto) async {
@@ -67,40 +67,7 @@ class BoletoController {
       },
     );
     if (boletoType == "bank_statement") {
-      MyNotification.cancel(MyNotification().idNotification(
-          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)), 8));
-      MyNotification.cancel(MyNotification().idNotification(
-          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)), 16));
-      MyNotification.cancel(MyNotification().idNotification(
-          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)) - 1, 8));
-      MyNotification.cancel(MyNotification().idNotification(
-          boleto.barcode!, int.parse(boleto.dueDate!.substring(0, 2)) - 1, 16));
-    }
-  }
-
-  Future getBoletos(local) async {
-    List<BoletoModel> boletos = [];
-    final authController = AuthControlller();
-    final user = await authController.getUser();
-    FirebaseFirestore db = await DBFirestore.get();
-    try {
-      var userBoletos =
-          await db.collection('users').doc(user.id).collection(local).get();
-
-      userBoletos.docs.forEach((doc) {
-        final data = doc.data();
-        boletos.add(
-          BoletoModel(
-            dueDate: data['vencimento'],
-            barcode: data['codigo'],
-            name: data['nome'],
-            value: data['valor'].toDouble(),
-          ),
-        );
-      });
-      return boletos;
-    } catch (e) {
-      return boletos;
+      MyNotification().cancelBillNotifications(boleto);
     }
   }
 

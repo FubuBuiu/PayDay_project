@@ -1,13 +1,4 @@
 class BarcodeInformations {
-  //23797404300001240200448056168623793601105800
-  //23793381286006854200463000063303287510000005555
-
-  //84660000002797500420011209493447206210210706
-  //84600000003281300421000112850137592108210820
-
-  //846000000030281300421001011285013758921082108207
-  //846600000026797500420014120949344721062102107067
-
   //----------------CÁLCULO PARA ENCONTRAR O DÍGITO VERIFICADOR DE CADA CAMPO DO BARCODE----------------
   addDvOnBarcodeNumbers(String barcodeNumbers) {
     if (barcodeNumbers.length == 44) {
@@ -89,14 +80,12 @@ class BarcodeInformations {
       if (barcodeNumbers.length == 44) {
         final DateTime dateRef = DateTime.parse("1997-10-07");
         final days = int.parse(barcodeNumbers.substring(5, 9));
-        print(days);
         var dueDate = dateRef.add(Duration(days: (days + 1)));
         return "${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.year}";
       } else if (barcodeNumbers.length == 47) {
         final DateTime dateRef = DateTime.parse("1997-10-07");
         final days = int.parse(barcodeNumbers.substring(33, 37));
         var dueDate = dateRef.add(Duration(days: (days + 1)));
-        print(days);
         return "${dueDate.day.toString().length == 1 ? '0${dueDate.day}' : dueDate.day}${dueDate.month.toString().length == 1 ? '0${dueDate.month}' : dueDate.month}${dueDate.year}";
       }
     }

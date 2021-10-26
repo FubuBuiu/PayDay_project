@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nlw_project/auth/auth.controller.dart';
 import 'package:nlw_project/models/user_model.dart';
 import 'package:nlw_project/modules/boletoController/boletoController.dart';
+import 'package:nlw_project/modules/notifications/notifications.dart';
 
 class LoginController {
   final authController = AuthControlller();
@@ -33,6 +34,7 @@ class LoginController {
   Future<void> deleteAccount() async {
     await controllerBoleto.deleteAllBoletosUser();
     await authController.deleteSharedPreferencesUser();
+    MyNotification.notifications.cancelAll();
     await logout();
   }
 }

@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:nlw_project/auth/auth.controller.dart';
-import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_images.dart';
 
 class SplashPage extends StatelessWidget {
@@ -11,7 +10,7 @@ class SplashPage extends StatelessWidget {
     final authController = AuthControlller();
     authController.currentUser(context);
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: [
           Center(

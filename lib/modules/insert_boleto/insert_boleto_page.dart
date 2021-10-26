@@ -8,11 +8,10 @@ import 'package:nlw_project/models/boleto_model.dart';
 import 'package:nlw_project/modules/barcodeInformations/barcodeInformations.dart';
 import 'package:nlw_project/modules/boletoController/boletoController.dart';
 import 'package:nlw_project/modules/date/my_date.dart';
-import 'package:nlw_project/modules/home/home_page.dart';
-import 'package:nlw_project/modules/meus_boletos/meus_boletos_page.dart';
+import 'package:nlw_project/modules/notifications/notifications.dart';
 import 'package:nlw_project/themes/app_colors.dart';
 import 'package:nlw_project/themes/app_text_style.dart';
-import 'package:nlw_project/widgets/set_label_buttons/set_label_buttons.dart';
+import 'package:nlw_project/widgets/bottom_navigation_insert_boleto/bottom_navigation_insert_boleto.dart';
 
 class InsertBoletoPage extends StatefulWidget {
   final String? barcode;
@@ -66,13 +65,9 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        leading: BackButton(
-          color: AppColors.input,
-        ),
+        leading: BackButton(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -93,22 +88,17 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                   child: Column(
                     children: [
                       _buildName(),
+                      _buildBarcode(),
                       _buildDueDate(),
                       _buildValue(),
-                      _buildBarcode(),
                     ],
                   ))
             ],
           ),
         ),
       ),
-      bottomNavigationBar: SetLabelButtons(
-        primaryLabel: "Cancelar",
-        primaryOnPressed: () {
-          Navigator.pop(context);
-        },
-        secondaryLabel: "Cadastrar",
-        secondaryOnPressed: () async {
+      bottomNavigationBar: BottomNavagationIsertBoleto(
+        cadastroOnPressed: () {
           if (formKey.currentState!.validate()) {
             BoletoModel boleto = BoletoModel(
               barcode: barcodeInputTextController.text,
@@ -116,11 +106,11 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
               name: nomeController.text,
               value: moneyInputTextController.numberValue,
             );
-            await controller.addBoleto(boleto);
+            MyNotification().createBillNotifications(boleto);
+            controller.addBoleto(boleto);
             Navigator.pop(context);
           }
         },
-        enableSecondaryColor: true,
       ),
     );
   }
@@ -136,11 +126,11 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
               controller: nomeController,
               validator: (String? value) =>
                   value?.isEmpty ?? true ? "O nome não pode ser vazio" : null,
-              style: TextStyles.input,
+              style: Theme.of(context).inputDecorationTheme.labelStyle,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 labelText: "Nome do boleto",
-                labelStyle: TextStyles.input,
+                // labelStyle: TextStyles.input,
                 border: InputBorder.none,
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -157,7 +147,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       child: VerticalDivider(
                         thickness: 1,
                         width: 0,
-                        color: AppColors.stroke,
                       ),
                     ),
                   ],
@@ -167,7 +156,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
             Divider(
               height: 1,
               thickness: 1,
-              color: AppColors.stroke,
             )
           ],
         ),
@@ -189,12 +177,10 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       ? "Data inválida"
                       : null,
               controller: dueDateInputTextController,
-              style: TextStyles.input,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 labelText: "Vencimento",
-                labelStyle: TextStyles.input,
                 border: InputBorder.none,
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -211,7 +197,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       child: VerticalDivider(
                         thickness: 1,
                         width: 0,
-                        color: AppColors.stroke,
                       ),
                     ),
                   ],
@@ -221,7 +206,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
             Divider(
               height: 1,
               thickness: 1,
-              color: AppColors.stroke,
             )
           ],
         ),
@@ -243,12 +227,11 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                 }
               },
               controller: moneyInputTextController,
-              style: TextStyles.input,
               keyboardType: TextInputType.number,
+              toolbarOptions: ToolbarOptions(selectAll: false),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 labelText: "Valor",
-                labelStyle: TextStyles.input,
                 border: InputBorder.none,
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -265,7 +248,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       child: VerticalDivider(
                         thickness: 1,
                         width: 0,
-                        color: AppColors.stroke,
                       ),
                     ),
                   ],
@@ -275,7 +257,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
             Divider(
               height: 1,
               thickness: 1,
-              color: AppColors.stroke,
             )
           ],
         ),
@@ -299,13 +280,11 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       : null,
               controller: barcodeInputTextController,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              style: TextStyles.input,
               keyboardType: TextInputType.number,
               focusNode: focus,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 labelText: "Código",
-                labelStyle: TextStyles.input,
                 border: InputBorder.none,
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -322,7 +301,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       child: VerticalDivider(
                         thickness: 1,
                         width: 0,
-                        color: AppColors.stroke,
                       ),
                     ),
                   ],
@@ -332,7 +310,6 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
             Divider(
               height: 1,
               thickness: 1,
-              color: AppColors.stroke,
             )
           ],
         ),

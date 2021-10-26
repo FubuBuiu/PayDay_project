@@ -22,7 +22,7 @@ class BoletoExtractTileWidget extends StatelessWidget {
     return AnimatedCard(
       direction: AnimatedCardDirection.right,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 10),
         child: InkWell(
           onTap: (){
             bottomSheet.boletoExtractOptions(context, data);

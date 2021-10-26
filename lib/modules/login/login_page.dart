@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         width: size.width,
         height: size.height,
@@ -53,7 +53,6 @@ class _LoginPageState extends State<LoginPage> {
                                 alignment: Alignment.center,
                                 child: Image.asset(
                                   AppImages.person,
-                                  // height: 310,
                                 ),
                               ),
                             ),
