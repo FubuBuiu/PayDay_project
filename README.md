@@ -1,4 +1,5 @@
 # PayDay_project
+Esse aplicativo foi desenvolvido com o objetivo de auxiliar o usuário com a organização de boletos, salvando os códigos do boleto e emitindo notificações de lembretes quando próximos a vencer. Por enquanto o aplicativo só está disponível para sistemas Android, mas futuramente estarei levando ele para o iOS, assim como acrescentando algumas melhorias também.
 
 ## Página de Login
 Para usar o aplicativo basta o usuário se conectar com sua conta Google.
